@@ -4,7 +4,7 @@ import FormField from './FormField';
 class BasicInfo extends Component {
   render() {
     return (
-      <div>
+      <div className="filling-form">
         <p>General Information</p>
         <form>
           <FormField
@@ -32,6 +32,7 @@ class BasicInfo extends Component {
             inputID="addressField"
             label="City and province"
           />
+          <button type="submit">Save</button>
         </form>
       </div>
     );

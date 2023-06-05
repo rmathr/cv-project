@@ -4,7 +4,7 @@ import FormField from './FormField';
 class Professional extends Component {
   render() {
     return (
-      <div>
+      <div className="filling-form">
         <p>Professional Expercience</p>
         <form>
           <FormField
@@ -35,6 +35,7 @@ class Professional extends Component {
             inputID="mainTasks"
             label="Description"
           />
+          <button type="submit">Save</button>
         </form>
       </div>
     );
