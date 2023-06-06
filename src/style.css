@@ -22,3 +22,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
 }
+
+.filling-form {
+    margin-bottom: 24px;
+}
