@@ -22,10 +22,6 @@ let info = [
 class App extends Component {
   constructor() {
     super();
-
-    // this.state = {
-    //   basicForm: '',
-    // };
     this.state = {
       basicForm: '',
       educationForm: '',
@@ -43,15 +39,6 @@ class App extends Component {
         });
       }
     }
-
-    // this.setState(
-    //   {
-    //     basicForm: obj,
-    //   },
-    //   () => {
-    //     console.log(this.state);
-    //   }
-    // );
   };
 
   render() {
@@ -65,25 +52,20 @@ class App extends Component {
             <Professional saveInputValue={this.saveInputValue} />
           </div>
           <div className="cv-show">
-            <BasicInfoRender
-              title={info[0].title}
-              place={info[0].place}
-              startDate={info[0].startDate}
-              endDate={info[0].endDate}
-            />
-            <BasicInfoRender
-              title={info[1].title}
-              place={info[1].place}
-              startDate={info[1].startDate}
-              endDate={info[1].endDate}
-            />
-            <div>
-              <p>{this.state.basicForm.firstName}</p>
-              <p>{this.state.basicForm.lastName}</p>
-              <p>{this.state.basicForm.email}</p>
-              <p>{this.state.basicForm.phone}</p>
-              <p>{this.state.basicForm.address}</p>
+            <div className="cv-basic-info">
+              <RenderField props={this.state.basicForm} />
             </div>
+            <div className="cv-education-info">
+              <p className="cv-section-title">Education</p>
+              <hr></hr>
+              <RenderField props={this.state.educationForm} />
+            </div>
+            <div className="cv-pro-info">
+              <p className="cv-section-title">Professional Expercience</p>
+              <hr></hr>
+              <RenderField props={this.state.professionalForm} />
+            </div>
+
             {/* <RenderField props={info[0]} />
             <RenderField props={info[1]} /> */}
           </div>

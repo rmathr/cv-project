@@ -11,12 +11,17 @@ const info = [
 
 function RenderField({ props }) {
   return (
-    <div className="render-field">
-      <p>{props.title}</p>
-      <p>{props.place}</p>
-      <p>{props.startDate}</p>
-      <p>{props.endDate}</p>
-    </div>
+    <>
+      {Object.entries(props).map(([key, value]) => {
+        if (value !== props.form) {
+          return (
+            <p key={key} className={key}>
+              {props[key]}
+            </p>
+          );
+        }
+      })}
+    </>
   );
 }
 

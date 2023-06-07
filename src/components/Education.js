@@ -54,7 +54,7 @@ class Education extends Component {
       <div className="filling-form">
         <p>Education Experience</p>
         <form onSubmit={this.onSubmitForm}>
-          <div>
+          <div className="input-container">
             <label htmlFor="degree">Degree</label>
             <input
               type="text"
@@ -64,9 +64,8 @@ class Education extends Component {
               value={this.state.degree}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
+          <div className="input-container">
             <label htmlFor="school">School</label>
             <input
               type="text"
@@ -76,9 +75,9 @@ class Education extends Component {
               value={this.state.school}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
+
+          <div className="input-container">
             <label htmlFor="city">City</label>
             <input
               type="text"
@@ -88,9 +87,8 @@ class Education extends Component {
               value={this.state.city}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
+          <div className="input-container">
             <label htmlFor="country">Country</label>
             <input
               type="text"
@@ -100,33 +98,35 @@ class Education extends Component {
               value={this.state.country}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
-            <label htmlFor="startDate">Start Date</label>
-            <input
-              type="date"
-              name="startDate"
-              placeholder="mm / dd / yy"
-              id="startDate"
-              value={this.state.startDate}
-              onChange={this.handleChange}
-            />
-            <button>Edit</button>
+          <div className="input-dates">
+            <div className="input-container">
+              <label htmlFor="startDate">Start Date</label>
+              <input
+                type="date"
+                name="startDate"
+                placeholder="mm / dd / yy"
+                id="startDate"
+                value={this.state.startDate}
+                onChange={this.handleChange}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="endDate">End Date</label>
+              <input
+                type="date"
+                name="endDate"
+                placeholder="mm / dd / yy"
+                id="endDate"
+                value={this.state.endDate}
+                onChange={this.handleChange}
+              />
+            </div>
           </div>
-          <div>
-            <label htmlFor="endDate">End Date</label>
-            <input
-              type="date"
-              name="endDate"
-              placeholder="mm / dd / yy"
-              id="endDate"
-              value={this.state.endDate}
-              onChange={this.handleChange}
-            />
-            <button>Edit</button>
-          </div>
-          <button type="submit">Save</button>
+          <button className="save-form" type="submit">
+            Save
+          </button>
         </form>
       </div>
     );

@@ -6,8 +6,7 @@ class BasicInfo extends Component {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
+      fullName: '',
       email: '',
       phone: '',
       address: '',
@@ -26,8 +25,7 @@ class BasicInfo extends Component {
   onSubmitForm = (e) => {
     e.preventDefault();
     const formData = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      fullName: this.state.fullName,
       email: this.state.email,
       phone: this.state.phone,
       address: this.state.address,
@@ -35,8 +33,7 @@ class BasicInfo extends Component {
     };
     this.props.saveInputValue(formData);
     this.setState({
-      firstName: '',
-      lastName: '',
+      fullName: '',
       email: '',
       phone: '',
       address: '',
@@ -48,34 +45,21 @@ class BasicInfo extends Component {
 
   render() {
     return (
-      <div className="filling-form">
+      <div className="filling-form general-information">
         <p>General Information</p>
         <form onSubmit={this.onSubmitForm}>
-          <div>
-            <label htmlFor="firstName">First Name</label>
+          <div className="input-container">
+            <label htmlFor="fullName">Full Name</label>
             <input
               type="text"
-              name="firstName"
-              placeholder="First Name"
-              id="firstName"
-              value={this.state.firstName}
+              name="fullName"
+              placeholder="Enter your full name"
+              id="fullName"
+              value={this.state.fullName}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              id="lastName"
-              value={this.state.lastName}
-              onChange={this.handleChange}
-            />
-            <button>Edit</button>
-          </div>
-          <div>
+          <div className="input-container">
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -85,9 +69,8 @@ class BasicInfo extends Component {
               value={this.state.email}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
+          <div className="input-container">
             <label htmlFor="phone">Phone Number</label>
             <input
               type="text"
@@ -97,9 +80,8 @@ class BasicInfo extends Component {
               value={this.state.phone}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <div>
+          <div className="input-container">
             <label htmlFor="address">City and province</label>
             <input
               type="text"
@@ -109,9 +91,10 @@ class BasicInfo extends Component {
               value={this.state.address}
               onChange={this.handleChange}
             />
-            <button>Edit</button>
           </div>
-          <button type="submit">Save</button>
+          <button className="save-form" type="submit">
+            Save
+          </button>
         </form>
       </div>
     );

@@ -1,11 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root{
+    --gray-background: #eef0f4;
+    --white-background: #FFF
+}
+
 body{
-    background-color: blueviolet;
+    background-color: var(--gray-background);
+    font-family: 'Roboto', sans-serif;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar{
+    display: none;
 }
 
 .main-container{
@@ -23,6 +37,129 @@ body{
     justify-content: space-between;
 }
 
+.forms-fill{
+    width: 40%;
+}
+
 .filling-form {
     margin-bottom: 24px;
+    background-color: var(--white-background);
+    padding: 24px 18px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
+
+.filling-form > p{
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding-left: 12px;
+}
+
+.filling-form > form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+}
+
+.input-dates{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+input[type=text], input[type=date], textarea{
+    background-color: var(--gray-background);
+    border: none;
+    border-radius: 12px;
+    height: 2.5rem;
+    padding-left: 12px;
+    outline: none;
+}
+
+textarea{
+    resize: none;
+    height: 4rem;
+    padding-top: 6px;
+}
+
+.filling-form  label {
+    padding-left: 12px;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.save-form{
+    align-self: flex-end;
+}
+
+
+.cv-show{
+    width: 55%;
+    background-color: var(--white-background);
+    padding: 24px 48px;  
+}
+
+
+.forms-fill, .cv-show{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: auto;
+    height: 90dvh;
+}
+
+.forms-fill::-webkit-scrollbar, .cv-show::-webkit-scrollbar{
+    display: none;
+}
+
+hr{
+    border: 1px solid black;
+}
+
+.cv-basic-info{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.cv-basic-info > p {
+    height: fit-content;
+    font-size: 0.8rem;
+}
+
+p.fullName  {
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+p.phone {
+    margin: 0 12px;
+}
+
+.cv-education-info, .cv-pro-info{
+    min-height: 300px;
+    height: fit-content;
+}
+
+/* .input-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+} */
