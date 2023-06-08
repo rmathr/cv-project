@@ -4,22 +4,8 @@ import Education from './Education';
 import Professional from './Professional';
 import RenderField from './RenderField';
 import BasicInfoRender from './BasicInfoRender';
-import OpenForms from './openForms';
+import FormRenderField from './FormRenderField';
 
-let info = [
-  {
-    title: 'Quality Analyst',
-    place: 'Midea Carrier',
-    startDate: '02/04/2019',
-    endDate: '11/18/2022',
-  },
-  {
-    title: 'Mechanical Engineering',
-    place: 'UFRGS',
-    startDate: '02/03/2011',
-    endDate: '09/18/2018',
-  },
-];
 class App extends Component {
   constructor() {
     super();
@@ -28,6 +14,9 @@ class App extends Component {
       educationForm: [],
       professionalForm: [],
       basicFormEdit: false,
+      educationFormEdit: false,
+      educationEntry: null,
+      professionalFormEdit: false,
     };
   }
 
@@ -38,6 +27,18 @@ class App extends Component {
       },
       () => {
         console.log(this.state.basicFormEdit);
+      }
+    );
+  };
+
+  editEducationForm = (e) => {
+    this.setState(
+      {
+        educationFormEdit: !this.state.educationFormEdit,
+        educationEntry: e.target.id,
+      },
+      () => {
+        console.log(this.state.educationEntry);
       }
     );
   };
@@ -58,19 +59,41 @@ class App extends Component {
             );
             break;
           case 'educationForm':
-            this.setState(
-              {
-                educationForm: this.state.educationForm.concat(obj),
-              },
-              () => {
-                console.log(this.state);
-              }
-            );
+            if (this.state.educationFormEdit) {
+              this.setState(
+                {
+                  educationForm: this.state.educationForm.map((element, index) => {
+                    if (index == this.state.educationEntry) {
+                      console.log('Teste');
+                      return obj;
+                    }
+                    return element;
+                  }),
+                  educationFormEdit: false,
+                  educationEntry: null,
+                },
+                () => {
+                  console.log(this.state);
+                }
+              );
+            } else {
+              this.setState(
+                {
+                  educationForm: this.state.educationForm.concat(obj),
+                  educationFormEdit: false,
+                  educationEntry: null,
+                },
+                () => {
+                  console.log(this.state);
+                }
+              );
+            }
             break;
           case 'professionalForm':
             this.setState(
               {
                 professionalForm: this.state.professionalForm.concat(obj),
+                professionalFormEdit: false,
               },
               () => {
                 console.log(this.state);
@@ -114,7 +137,32 @@ class App extends Component {
               </div>
             </div>
             <div className="education-form-fill">
-              <Education saveInputValue={this.saveInputValue} />
+              {!this.state.educationFormEdit && (
+                <Education
+                  saveInputValue={this.saveInputValue}
+                  isEditing={this.state.educationFormEdit}
+                  infoToEdit={this.state.educationForm[this.state.educationEntry]}
+                />
+              )}
+
+              {this.state.educationFormEdit && (
+                <Education
+                  saveInputValue={this.saveInputValue}
+                  isEditing={this.state.educationFormEdit}
+                  infoToEdit={this.state.educationForm[this.state.educationEntry]}
+                />
+              )}
+
+              <FormRenderField
+                infoArray={this.state.educationForm}
+                editEducationForm={this.editEducationForm}
+              />
+
+              {/* <Education saveInputValue={this.saveInputValue} />
+              <FormRenderField
+                infoArray={this.state.educationForm}
+                editEducationForm={this.editEducationForm}
+              /> */}
             </div>
             <div className="professional-form-fill">
               <Professional saveInputValue={this.saveInputValue} />

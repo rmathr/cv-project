@@ -5,16 +5,29 @@ class Education extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      degree: '',
-      school: '',
-      city: '',
-      country: '',
-      startDate: '',
-      endDate: '',
-      form: 'educationForm',
-      isShown: false,
-    };
+    if (this.props.isEditing) {
+      this.state = {
+        degree: this.props.infoToEdit.degree,
+        school: this.props.infoToEdit.school,
+        city: this.props.infoToEdit.city,
+        country: this.props.infoToEdit.country,
+        startDate: this.props.infoToEdit.startDate,
+        endDate: this.props.infoToEdit.endDate,
+        form: 'educationForm',
+        isShown: true,
+      };
+    } else {
+      this.state = {
+        degree: '',
+        school: '',
+        city: '',
+        country: '',
+        startDate: '',
+        endDate: '',
+        form: 'educationForm',
+        isShown: false,
+      };
+    }
   }
 
   toggleForm = (e) => {

@@ -148,7 +148,7 @@ hr{
 }
 
 .basic-form-general-info{
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
     flex-grow: 1;
     padding-top: 8px;
 }
