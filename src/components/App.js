@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import BasicInfo from './BasicInfo';
 import Education from './Education';
 import Professional from './Professional';
 import RenderField from './RenderField';
 import BasicInfoRender from './BasicInfoRender';
+import OpenForms from './openForms';
 
 let info = [
   {
@@ -24,19 +25,59 @@ class App extends Component {
     super();
     this.state = {
       basicForm: '',
-      educationForm: '',
-      professionalForm: '',
+      educationForm: [],
+      professionalForm: [],
+      basicFormEdit: false,
     };
   }
+
+  editForm = (e) => {
+    this.setState(
+      {
+        basicFormEdit: !this.state.basicFormEdit,
+      },
+      () => {
+        console.log(this.state.basicFormEdit);
+      }
+    );
+  };
 
   saveInputValue = (obj) => {
     for (let key in this.state) {
       if (key === obj.form) {
-        const newState = {};
-        newState[obj.form] = obj;
-        this.setState(newState, () => {
-          console.log(this.state);
-        });
+        switch (obj.form) {
+          case 'basicForm':
+            this.setState(
+              {
+                basicForm: obj,
+                basicFormEdit: false,
+              },
+              () => {
+                console.log(this.state);
+              }
+            );
+            break;
+          case 'educationForm':
+            this.setState(
+              {
+                educationForm: this.state.educationForm.concat(obj),
+              },
+              () => {
+                console.log(this.state);
+              }
+            );
+            break;
+          case 'professionalForm':
+            this.setState(
+              {
+                professionalForm: this.state.professionalForm.concat(obj),
+              },
+              () => {
+                console.log(this.state);
+              }
+            );
+            break;
+        }
       }
     }
   };
@@ -47,9 +88,37 @@ class App extends Component {
         <header>cv generator</header>
         <div className="main-content">
           <div className="forms-fill">
-            <BasicInfo saveInputValue={this.saveInputValue} />
-            <Education saveInputValue={this.saveInputValue} />
-            <Professional saveInputValue={this.saveInputValue} />
+            <div className="basic-form-fill">
+              {!this.state.basicFormEdit && (
+                <BasicInfo
+                  saveInputValue={this.saveInputValue}
+                  isEditing={this.state.basicFormEdit}
+                  infoToEdit={this.state.basicForm}
+                />
+              )}
+              {this.state.basicFormEdit && (
+                <BasicInfo
+                  saveInputValue={this.saveInputValue}
+                  isEditing={this.state.basicFormEdit}
+                  infoToEdit={this.state.basicForm}
+                />
+              )}
+
+              <div className="basic-form-show">
+                <div className="basic-form-general-info">
+                  <RenderField props={this.state.basicForm} />
+                </div>
+                {this.state.basicForm != '' && (
+                  <button onClick={this.editForm}>Edit</button>
+                )}
+              </div>
+            </div>
+            <div className="education-form-fill">
+              <Education saveInputValue={this.saveInputValue} />
+            </div>
+            <div className="professional-form-fill">
+              <Professional saveInputValue={this.saveInputValue} />
+            </div>
           </div>
           <div className="cv-show">
             <div className="cv-basic-info">
@@ -65,9 +134,6 @@ class App extends Component {
               <hr></hr>
               <RenderField props={this.state.professionalForm} />
             </div>
-
-            {/* <RenderField props={info[0]} />
-            <RenderField props={info[1]} /> */}
           </div>
         </div>
         <footer>rmath</footer>

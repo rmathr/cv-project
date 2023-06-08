@@ -41,7 +41,8 @@ body::-webkit-scrollbar{
     width: 40%;
 }
 
-.filling-form {
+
+.basic-form-fill, .education-form-fill, .professional-form-fill {
     margin-bottom: 24px;
     background-color: var(--white-background);
     padding: 24px 18px;
@@ -51,11 +52,22 @@ body::-webkit-scrollbar{
     align-items: flex-start;
 }
 
-.filling-form > p{
+.filling-form{
+    width: 100%;
+}
+
+.form-header > p{
     font-size: 1.4rem;
     font-weight: 700;
     margin-bottom: 12px;
     padding-left: 12px;
+}
+
+.form-header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .filling-form > form{
@@ -124,6 +136,28 @@ hr{
     border: 1px solid black;
 }
 
+.basic-form-show{
+    
+    padding-left: 12px;
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basic-form-general-info{
+    border-top: 1px solid black;
+    flex-grow: 1;
+    padding-top: 8px;
+}
+
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@ CV CSS @@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
+
+
+
+
 .cv-basic-info{
     width: 100%;
     height: 100px;
@@ -140,7 +174,7 @@ hr{
     font-size: 0.8rem;
 }
 
-p.fullName  {
+.cv-basic-info > p.fullName  {
     width: 100%;
     text-align: center;
     font-size: 1.3rem;
@@ -148,7 +182,7 @@ p.fullName  {
     margin-bottom: 12px;
 }
 
-p.phone {
+.cv-basic-info > p.phone {
     margin: 0 12px;
 }
 

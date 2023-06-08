@@ -12,8 +12,20 @@ class Professional extends Component {
       endDatePro: '',
       mainTasks: '',
       form: 'professionalForm',
+      isShown: false,
     };
   }
+
+  toggleForm = (e) => {
+    this.setState(
+      {
+        isShown: !this.state.isShown,
+      },
+      () => {
+        console.log(this.state.isShown);
+      }
+    );
+  };
 
   handleChange = (e) => {
     const name = e.target.name;
@@ -32,6 +44,7 @@ class Professional extends Component {
       endDatePro: this.state.endDatePro,
       mainTasks: this.state.mainTasks,
       form: this.state.form,
+      isShown: this.state.isShown,
     };
     this.props.saveInputValue(formData);
     this.setState({
@@ -41,6 +54,7 @@ class Professional extends Component {
       endDatePro: '',
       mainTasks: '',
       form: 'professionalForm',
+      isShown: false,
     });
 
     console.log(formData);
@@ -49,68 +63,74 @@ class Professional extends Component {
   render() {
     return (
       <div className="filling-form">
-        <p>Professional Expercience</p>
-        <form onSubmit={this.onSubmitForm}>
-          <div className="input-container">
-            <label htmlFor="jobTitle">Job Title</label>
-            <input
-              type="text"
-              name="jobTitle"
-              placeholder="Enter Job Title"
-              id="jobTitle"
-              value={this.state.jobTitle}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="input-container">
-            <label htmlFor="company">Company</label>
-            <input
-              type="text"
-              name="company"
-              placeholder="Enter Company"
-              id="company"
-              value={this.state.company}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="input-dates">
+        <div className="form-header">
+          <p>Professional Expercience</p>
+          <button onClick={this.toggleForm}>Click</button>
+        </div>
+
+        {this.state.isShown && (
+          <form onSubmit={this.onSubmitForm}>
             <div className="input-container">
-              <label htmlFor="startDatePro">Start Date</label>
+              <label htmlFor="jobTitle">Job Title</label>
               <input
-                type="date"
-                name="startDatePro"
-                placeholder="mm / dd / yy"
-                id="startDatePro"
-                value={this.state.startDatePro}
+                type="text"
+                name="jobTitle"
+                placeholder="Enter Job Title"
+                id="jobTitle"
+                value={this.state.jobTitle}
                 onChange={this.handleChange}
               />
             </div>
             <div className="input-container">
-              <label htmlFor="endDatePro">End Date</label>
+              <label htmlFor="company">Company</label>
               <input
-                type="date"
-                name="endDatePro"
-                placeholder="mm / dd / yy"
-                id="endDatePro"
-                value={this.state.endDatePro}
+                type="text"
+                name="company"
+                placeholder="Enter Company"
+                id="company"
+                value={this.state.company}
                 onChange={this.handleChange}
               />
             </div>
-          </div>
-          <div className="input-container">
-            <label htmlFor="mainTasks">Description</label>
-            <textarea
-              name="mainTasks"
-              placeholder="Main tasks"
-              id="mainTasks"
-              value={this.state.mainTasks}
-              onChange={this.handleChange}
-            />
-          </div>
-          <button className="save-form" type="submit">
-            Save
-          </button>
-        </form>
+            <div className="input-dates">
+              <div className="input-container">
+                <label htmlFor="startDatePro">Start Date</label>
+                <input
+                  type="date"
+                  name="startDatePro"
+                  placeholder="mm / dd / yy"
+                  id="startDatePro"
+                  value={this.state.startDatePro}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="input-container">
+                <label htmlFor="endDatePro">End Date</label>
+                <input
+                  type="date"
+                  name="endDatePro"
+                  placeholder="mm / dd / yy"
+                  id="endDatePro"
+                  value={this.state.endDatePro}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+            <div className="input-container">
+              <label htmlFor="mainTasks">Description</label>
+              <textarea
+                name="mainTasks"
+                placeholder="Main tasks"
+                id="mainTasks"
+                value={this.state.mainTasks}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button className="save-form" type="submit">
+              Save
+            </button>
+          </form>
+        )}
       </div>
     );
   }

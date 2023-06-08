@@ -1,17 +1,32 @@
-import React, { Component } from 'react';
-
-const info = [
-  {
-    title: '',
-    place: '',
-    startDate: '',
-    endDate: '',
-  },
-];
+import React from 'react';
 
 function RenderField({ props }) {
+  if (Array.isArray(props)) {
+    const propsArray = [...props];
+    const entry = propsArray.map((prop) => <RenderObj props={prop} />);
+    return <>{entry}</>;
+  } else {
+    return (
+      <>
+        {Object.entries(props).map(([key, value]) => {
+          if (value !== props.form) {
+            return (
+              <p key={key} className={key}>
+                {props[key]}
+              </p>
+            );
+          }
+        })}
+      </>
+    );
+
+    // return <RenderObj props={props} />;
+  }
+}
+
+function RenderObj({ props }) {
   return (
-    <>
+    <div className="entry">
       {Object.entries(props).map(([key, value]) => {
         if (value !== props.form) {
           return (
@@ -21,25 +36,8 @@ function RenderField({ props }) {
           );
         }
       })}
-    </>
+    </div>
   );
 }
-
-// class RenderField extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   render() {
-//     return (
-//       <div className="render-field">
-//         <p>{this.props.title}</p>
-//         <p>{this.props.place}</p>
-//         <p>{this.props.startDate}</p>
-//         <p>{this.props.endDate}</p>
-//       </div>
-//     );
-//   }
-// }
 
 export default RenderField;
