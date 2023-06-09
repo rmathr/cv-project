@@ -11,11 +11,11 @@ class FormRenderField extends Component {
     const propsArray = [...this.props.infoArray];
     const entry = propsArray.map((prop) => {
       return (
-        <div key={uniqid()} className="education-form-show">
+        <div key={uniqid()} className="form-show-info">
           <RenderObj key={uniqid()} props={prop} />
           <button
             key={uniqid()}
-            onClick={this.props.editEducationForm}
+            onClick={this.props.editForm}
             id={propsArray.indexOf(prop)}
           >
             Edit

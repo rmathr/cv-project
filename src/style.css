@@ -50,30 +50,35 @@ body::-webkit-scrollbar{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .filling-form{
     width: 100%;
 }
 
-.form-header > p{
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    padding-left: 12px;
-}
+
 
 .form-header{
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+}
+
+.form-header > p{
+    font-size: 1.4rem;
+    font-weight: 700;
+    /* margin-bottom: 12px; */
+    padding-left: 12px;
 }
 
 .filling-form > form{
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: 12px;
 }
 
 .input-container{
@@ -117,7 +122,8 @@ textarea{
 .cv-show{
     width: 55%;
     background-color: var(--white-background);
-    padding: 24px 48px;  
+    padding: 24px 48px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;  
 }
 
 
@@ -153,6 +159,40 @@ hr{
     padding-top: 8px;
 }
 
+.expand-icon{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.save-form {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 8px 16px;
+    border: none;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    color: #fff;
+}
+
+.save-form > span{
+    display: flex;
+    align-items: center;
+}
+
+.save-form > span > span {
+    margin: 0 4px;
+}
+
+.svg-right{
+    width: 24px;
+    height: auto;
+}
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@ CV CSS @@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
 
 

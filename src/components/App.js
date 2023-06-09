@@ -17,30 +17,28 @@ class App extends Component {
       educationFormEdit: false,
       educationEntry: null,
       professionalFormEdit: false,
+      professionalEntry: null,
     };
   }
 
   editForm = (e) => {
-    this.setState(
-      {
-        basicFormEdit: !this.state.basicFormEdit,
-      },
-      () => {
-        console.log(this.state.basicFormEdit);
-      }
-    );
+    this.setState({
+      basicFormEdit: !this.state.basicFormEdit,
+    });
   };
 
   editEducationForm = (e) => {
-    this.setState(
-      {
-        educationFormEdit: !this.state.educationFormEdit,
-        educationEntry: e.target.id,
-      },
-      () => {
-        console.log(this.state.educationEntry);
-      }
-    );
+    this.setState({
+      educationFormEdit: !this.state.educationFormEdit,
+      educationEntry: e.target.id,
+    });
+  };
+
+  editProfessionalForm = (e) => {
+    this.setState({
+      professionalFormEdit: !this.state.professionalFormEdit,
+      professionalEntry: e.target.id,
+    });
   };
 
   saveInputValue = (obj) => {
@@ -48,15 +46,10 @@ class App extends Component {
       if (key === obj.form) {
         switch (obj.form) {
           case 'basicForm':
-            this.setState(
-              {
-                basicForm: obj,
-                basicFormEdit: false,
-              },
-              () => {
-                console.log(this.state);
-              }
-            );
+            this.setState({
+              basicForm: obj,
+              basicFormEdit: false,
+            });
             break;
           case 'educationForm':
             if (this.state.educationFormEdit) {
@@ -64,7 +57,6 @@ class App extends Component {
                 {
                   educationForm: this.state.educationForm.map((element, index) => {
                     if (index == this.state.educationEntry) {
-                      console.log('Teste');
                       return obj;
                     }
                     return element;
@@ -90,15 +82,34 @@ class App extends Component {
             }
             break;
           case 'professionalForm':
-            this.setState(
-              {
-                professionalForm: this.state.professionalForm.concat(obj),
-                professionalFormEdit: false,
-              },
-              () => {
-                console.log(this.state);
-              }
-            );
+            if (this.state.professionalFormEdit) {
+              this.setState(
+                {
+                  professionalForm: this.state.professionalForm.map((element, index) => {
+                    if (index == this.state.professionalEntry) {
+                      return obj;
+                    }
+                    return element;
+                  }),
+                  professionalFormEdit: false,
+                  professionalEntry: null,
+                },
+                () => {
+                  console.log(this.state);
+                }
+              );
+            } else {
+              this.setState(
+                {
+                  professionalForm: this.state.professionalForm.concat(obj),
+                  professionalFormEdit: false,
+                },
+                () => {
+                  console.log(this.state);
+                }
+              );
+            }
+
             break;
         }
       }
@@ -126,15 +137,15 @@ class App extends Component {
                   infoToEdit={this.state.basicForm}
                 />
               )}
+              {this.state.basicForm != '' && (
+                <div className="basic-form-show">
+                  <div className="basic-form-general-info">
+                    <RenderField props={this.state.basicForm} />
+                  </div>
 
-              <div className="basic-form-show">
-                <div className="basic-form-general-info">
-                  <RenderField props={this.state.basicForm} />
-                </div>
-                {this.state.basicForm != '' && (
                   <button onClick={this.editForm}>Edit</button>
-                )}
-              </div>
+                </div>
+              )}
             </div>
             <div className="education-form-fill">
               {!this.state.educationFormEdit && (
@@ -155,7 +166,7 @@ class App extends Component {
 
               <FormRenderField
                 infoArray={this.state.educationForm}
-                editEducationForm={this.editEducationForm}
+                editForm={this.editEducationForm}
               />
 
               {/* <Education saveInputValue={this.saveInputValue} />
@@ -165,7 +176,28 @@ class App extends Component {
               /> */}
             </div>
             <div className="professional-form-fill">
-              <Professional saveInputValue={this.saveInputValue} />
+              {!this.state.professionalFormEdit && (
+                <Professional
+                  saveInputValue={this.saveInputValue}
+                  isEditing={this.state.professionalFormEdit}
+                  infoToEdit={this.state.professionalForm[this.state.professionalEntry]}
+                />
+              )}
+
+              {this.state.professionalFormEdit && (
+                <Professional
+                  saveInputValue={this.saveInputValue}
+                  isEditing={this.state.professionalFormEdit}
+                  infoToEdit={this.state.professionalForm[this.state.professionalEntry]}
+                />
+              )}
+
+              <FormRenderField
+                infoArray={this.state.professionalForm}
+                editForm={this.editProfessionalForm}
+              />
+
+              {/* <Professional saveInputValue={this.saveInputValue} /> */}
             </div>
           </div>
           <div className="cv-show">

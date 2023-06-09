@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FormField from './FormField';
+import expandMore from '../assets/icons/expand-more.png';
+import expandLess from '../assets/icons/expand-less.png';
 
 class BasicInfo extends Component {
   constructor(props) {
@@ -70,7 +72,12 @@ class BasicInfo extends Component {
       <div className="filling-form general-information">
         <div className="form-header">
           <p>General Information</p>
-          <button onClick={this.toggleForm}>Click</button>
+          {/* <button onClick={this.toggleForm}>Click</button> */}
+          <img
+            onClick={this.toggleForm}
+            src={this.state.isShown ? expandLess : expandMore}
+            className="expand-icon"
+          />
         </div>
 
         {this.state.isShown && (
@@ -120,7 +127,20 @@ class BasicInfo extends Component {
               />
             </div>
             <button className="save-form" type="submit">
-              Save
+              <span>
+                {' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="svg-right"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+                </svg>{' '}
+                <span></span>
+                Save
+              </span>
             </button>
           </form>
         )}

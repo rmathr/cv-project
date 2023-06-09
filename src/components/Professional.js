@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 import FormField from './FormField';
+import expandMore from '../assets/icons/expand-more.png';
+import expandLess from '../assets/icons/expand-less.png';
 
 class Professional extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      jobTitle: '',
-      company: '',
-      startDatePro: '',
-      endDatePro: '',
-      mainTasks: '',
-      form: 'professionalForm',
-      isShown: false,
-    };
+    if (this.props.isEditing) {
+      this.state = {
+        jobTitle: this.props.infoToEdit.jobTitle,
+        company: this.props.infoToEdit.company,
+        startDatePro: this.props.infoToEdit.startDatePro,
+        endDatePro: this.props.infoToEdit.endDatePro,
+        mainTasks: this.props.infoToEdit.mainTasks,
+        form: 'professionalForm',
+        isShown: true,
+      };
+    } else {
+      this.state = {
+        jobTitle: '',
+        company: '',
+        startDatePro: '',
+        endDatePro: '',
+        mainTasks: '',
+        form: 'professionalForm',
+        isShown: false,
+      };
+    }
   }
 
   toggleForm = (e) => {
@@ -65,7 +79,12 @@ class Professional extends Component {
       <div className="filling-form">
         <div className="form-header">
           <p>Professional Expercience</p>
-          <button onClick={this.toggleForm}>Click</button>
+          {/* <button onClick={this.toggleForm}>Click</button> */}
+          <img
+            onClick={this.toggleForm}
+            src={this.state.isShown ? expandLess : expandMore}
+            className="expand-icon"
+          />
         </div>
 
         {this.state.isShown && (
@@ -127,7 +146,20 @@ class Professional extends Component {
               />
             </div>
             <button className="save-form" type="submit">
-              Save
+              <span>
+                {' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="svg-right"
+                >
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+                </svg>{' '}
+                <span></span>
+                Save
+              </span>
             </button>
           </form>
         )}
