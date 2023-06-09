@@ -30,6 +30,13 @@ class BasicInfo extends Component {
       };
     }
   }
+
+  isFormValid = () => {
+    console.log('teste');
+    const { fullName, email, phone, address } = this.state;
+    return fullName.length && email.length && phone.length && address.length;
+  };
+
   toggleForm = (e) => {
     this.setState({
       isShown: !this.state.isShown,
@@ -126,7 +133,7 @@ class BasicInfo extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button className="save-form" type="submit">
+            <button className="save-form" type="submit" disabled={!this.isFormValid()}>
               <span>
                 {' '}
                 <svg

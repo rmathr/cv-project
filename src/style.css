@@ -192,6 +192,11 @@ hr{
     margin: 0 4px;
 }
 
+.save-form:disabled{
+    opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .svg-right{
     width: 24px;
     height: auto;

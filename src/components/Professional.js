@@ -30,6 +30,17 @@ class Professional extends Component {
     }
   }
 
+  isFormValid = () => {
+    const { jobTitle, company, startDatePro, endDatePro, mainTasks } = this.state;
+    return (
+      jobTitle.length &&
+      company.length &&
+      startDatePro.length &&
+      endDatePro.length &&
+      mainTasks.length
+    );
+  };
+
   toggleForm = (e) => {
     this.setState(
       {
@@ -156,7 +167,7 @@ class Professional extends Component {
               </button>
             )}
 
-            <button className="save-form" type="submit">
+            <button className="save-form" type="submit" disabled={!this.isFormValid()}>
               <span>
                 {' '}
                 <svg

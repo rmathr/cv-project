@@ -32,6 +32,19 @@ class Education extends Component {
     }
   }
 
+  isFormValid = () => {
+    console.log('teste');
+    const { degree, school, city, country, startDate, endDate } = this.state;
+    return (
+      degree.length &&
+      school.length &&
+      city.length &&
+      country.length &&
+      startDate.length &&
+      endDate.length
+    );
+  };
+
   toggleForm = (e) => {
     this.setState({
       isShown: !this.state.isShown,
@@ -167,7 +180,7 @@ class Education extends Component {
               </button>
             )}
 
-            <button className="save-form" type="submit">
+            <button className="save-form" type="submit" disabled={!this.isFormValid()}>
               <span>
                 {' '}
                 <svg
