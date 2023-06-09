@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Roboto:wght@100;400;700&display=swap');
 
 *{
     margin: 0;
@@ -24,23 +24,67 @@ body::-webkit-scrollbar{
 
 .main-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100dvh;
     justify-content: space-between;
     align-items: center;
 }
 
 .main-content{
-    width: 90%;
+    width: 85%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.main-header{
+    width: 15%;
+    height: 100dvh;
+    
+    padding: 36px 18px;
+}
+
+.main-header-content{
+    border-radius: 16px;
+    width: 100%;
+    background-color: var(--white-background);
+    padding: 24px 18px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    flex-direction: column;
+    height: 60dvh;
+    justify-content: space-between;
+    align-items: center;
+    color: #200E32;
+}
+
+.main-header-content > footer, .header-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.header-img{
+    width: 72px;
+    height: auto;
+    margin-bottom: 18px;
+}
+
+.header-text{
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.4rem;
 }
 
 .forms-fill{
     width: 40%;
 }
 
+.cv-show{
+    width: 55%;
+    padding-right: 36px;
+}
 
 .basic-form-fill, .education-form-fill, .professional-form-fill {
     margin-bottom: 24px;
@@ -98,7 +142,7 @@ input[type=text], input[type=date], textarea{
     border: none;
     border-radius: 12px;
     height: 2.5rem;
-    padding-left: 12px;
+    padding: 0 12px;
     outline: none;
 }
 
@@ -115,26 +159,31 @@ textarea{
 }
 
 .save-form{
-    align-self: flex-end;
+    justify-self: flex-end;
 }
 
 .delete-form{
-    align-self: flex-start;
+    justify-self: flex-start;
 }
 
-.cv-show{
-    width: 55%;
-    background-color: var(--white-background);
+
+
+.cv-section{
+    width: 100%;
     padding: 24px 48px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;  
+    background-color: var(--white-background);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
 
 .forms-fill, .cv-show{
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: auto;
-    height: 90dvh;
+    height: 100dvh;
+}
+
+.forms-fill, .cv-show{
+    padding-top: 36px;
 }
 
 .forms-fill::-webkit-scrollbar, .cv-show::-webkit-scrollbar{
@@ -145,7 +194,7 @@ hr{
     border: 1px solid black;
 }
 
-.basic-form-show{
+.basic-form-show, .form-show-info{
     
     padding-left: 12px;
     margin-top: 12px;
@@ -156,11 +205,63 @@ hr{
     align-items: center;
 }
 
-.basic-form-general-info{
+.basic-form-general-info, .form-show-info{
     /* border-top: 1px solid black; */
     flex-grow: 1;
     padding-top: 8px;
 }
+
+.basic-form-general-info > .fullName{
+    font-weight: 700;
+}
+
+.basic-form-general-info > .email{
+    font-style: italic;
+}
+
+.form-show-info > .entry {
+    display: grid;
+    column-gap: 10px;
+    grid-template-areas: 
+    "degree degree"
+    "school school"
+    "city country"
+    "startDate endDate"
+    ;
+}
+
+.basic-form-show, .form-show-info{
+    border-top: 5px solid var(--gray-background);
+}
+
+.form-show-info > .entry > .degree{
+    grid-area: degree;
+}
+
+.form-show-info > .entry > .school{
+    grid-area: school;
+}
+
+.form-show-info > .entry > .city{
+    grid-area: city;
+}
+
+.form-show-info > .entry > .city::after{
+    content: ','
+}
+
+.form-show-info > .entry > .country{
+    grid-area: country;
+}
+
+.form-show-info > .entry > .startDate{
+    grid-area: startDate;
+}
+
+.form-show-info > .entry > .endDate{
+    grid-area: endDate;
+}
+
 
 .expand-icon{
     width: 16px;
@@ -183,12 +284,12 @@ hr{
     color: #fff;
 }
 
-.save-form > span{
+.save-form > span, .edit-form > span, .delete-form > span{
     display: flex;
     align-items: center;
 }
 
-.save-form > span > span {
+.save-form > span > span, .edit-form > span > span, .delete-form > span > span {
     margin: 0 4px;
 }
 
@@ -197,10 +298,66 @@ hr{
   cursor: not-allowed;
 }
 
-.svg-right{
+.edit-form {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 8px 16px;
+    border: none;
+    /* border: 1px solid #222222; */
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+    background: #fff;
+    color: #222222;
+}
+
+.edit-form:hover {
+    /* border-color: #000000; */
+    background: var(--gray-background);
+}
+
+.delete-form{
+    /* display: inline-block;
+    outline: none; */
+    padding: 8px 16px;
+    font-weight: 600;
+    /* border-radius: 30px;
+    padding: 2px; */
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    /* background-color: #222222; */
+}
+
+/* .delete-form > span {
+    background-color: var(--white-background);
+    border-radius: 30px;
+    padding: 8px 16px;
+} */
+
+.svg-right, .svg-delete, .svg-edit{
     width: 24px;
     height: auto;
 }
+
+.form-buttons{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
+.form-show-info > .entry> .degree{
+    font-weight: 700;
+}
+
+.form-show-info > .entry> .school{
+    font-style: italic;
+}
+
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@ CV CSS @@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
 
 

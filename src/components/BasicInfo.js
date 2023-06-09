@@ -133,22 +133,25 @@ class BasicInfo extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button className="save-form" type="submit" disabled={!this.isFormValid()}>
-              <span>
-                {' '}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="svg-right"
-                >
-                  <path d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
-                </svg>{' '}
-                <span></span>
-                Save
-              </span>
-            </button>
+            <div className="form-buttons">
+              <span></span>
+              <button className="save-form" type="submit" disabled={!this.isFormValid()}>
+                <span>
+                  {' '}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="svg-right"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path>
+                  </svg>{' '}
+                  <span></span>
+                  Save
+                </span>
+              </button>
+            </div>
           </form>
         )}
       </div>
