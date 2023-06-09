@@ -118,6 +118,9 @@ textarea{
     align-self: flex-end;
 }
 
+.delete-form{
+    align-self: flex-start;
+}
 
 .cv-show{
     width: 55%;

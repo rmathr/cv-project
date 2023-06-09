@@ -145,6 +145,17 @@ class Professional extends Component {
                 onChange={this.handleChange}
               />
             </div>
+
+            {this.props.isEditing && (
+              <button
+                type="button"
+                className="delete-form"
+                onClick={() => this.props.deleteValue(this.state)}
+              >
+                Delete
+              </button>
+            )}
+
             <button className="save-form" type="submit">
               <span>
                 {' '}

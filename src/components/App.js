@@ -41,6 +41,41 @@ class App extends Component {
     });
   };
 
+  deleteValue = (obj) => {
+    for (let key in this.state) {
+      if (key === obj.form) {
+        switch (obj.form) {
+          case 'educationForm':
+            if (this.state.educationFormEdit) {
+              this.setState({
+                educationForm: this.state.educationForm.filter((element, index) => {
+                  if (index != this.state.educationEntry) {
+                    return element;
+                  }
+                }),
+                educationFormEdit: false,
+                educationEntry: null,
+              });
+            }
+            break;
+          case 'professionalForm':
+            if (this.state.professionalFormEdit) {
+              this.setState({
+                professionalForm: this.state.professionalForm.filter((element, index) => {
+                  if (index != this.state.professionalEntry) {
+                    return element;
+                  }
+                }),
+                professionalFormEdit: false,
+                professionalEntry: null,
+              });
+            }
+            break;
+        }
+      }
+    }
+  };
+
   saveInputValue = (obj) => {
     for (let key in this.state) {
       if (key === obj.form) {
@@ -53,63 +88,42 @@ class App extends Component {
             break;
           case 'educationForm':
             if (this.state.educationFormEdit) {
-              this.setState(
-                {
-                  educationForm: this.state.educationForm.map((element, index) => {
-                    if (index == this.state.educationEntry) {
-                      return obj;
-                    }
-                    return element;
-                  }),
-                  educationFormEdit: false,
-                  educationEntry: null,
-                },
-                () => {
-                  console.log(this.state);
-                }
-              );
+              this.setState({
+                educationForm: this.state.educationForm.map((element, index) => {
+                  if (index == this.state.educationEntry) {
+                    return obj;
+                  }
+                  return element;
+                }),
+                educationFormEdit: false,
+                educationEntry: null,
+              });
             } else {
-              this.setState(
-                {
-                  educationForm: this.state.educationForm.concat(obj),
-                  educationFormEdit: false,
-                  educationEntry: null,
-                },
-                () => {
-                  console.log(this.state);
-                }
-              );
+              this.setState({
+                educationForm: this.state.educationForm.concat(obj),
+                educationFormEdit: false,
+                educationEntry: null,
+              });
             }
             break;
           case 'professionalForm':
             if (this.state.professionalFormEdit) {
-              this.setState(
-                {
-                  professionalForm: this.state.professionalForm.map((element, index) => {
-                    if (index == this.state.professionalEntry) {
-                      return obj;
-                    }
-                    return element;
-                  }),
-                  professionalFormEdit: false,
-                  professionalEntry: null,
-                },
-                () => {
-                  console.log(this.state);
-                }
-              );
+              this.setState({
+                professionalForm: this.state.professionalForm.map((element, index) => {
+                  if (index == this.state.professionalEntry) {
+                    return obj;
+                  }
+                  return element;
+                }),
+                professionalFormEdit: false,
+                professionalEntry: null,
+              });
             } else {
-              this.setState(
-                {
-                  professionalForm: this.state.professionalForm.concat(obj),
-                  professionalFormEdit: false,
-                },
-                () => {
-                  console.log(this.state);
-                }
-              );
+              this.setState({
+                professionalForm: this.state.professionalForm.concat(obj),
+                professionalFormEdit: false,
+              });
             }
-
             break;
         }
       }
@@ -153,6 +167,7 @@ class App extends Component {
                   saveInputValue={this.saveInputValue}
                   isEditing={this.state.educationFormEdit}
                   infoToEdit={this.state.educationForm[this.state.educationEntry]}
+                  deleteValue={this.deleteValue}
                 />
               )}
 
@@ -161,6 +176,7 @@ class App extends Component {
                   saveInputValue={this.saveInputValue}
                   isEditing={this.state.educationFormEdit}
                   infoToEdit={this.state.educationForm[this.state.educationEntry]}
+                  deleteValue={this.deleteValue}
                 />
               )}
 
@@ -168,12 +184,6 @@ class App extends Component {
                 infoArray={this.state.educationForm}
                 editForm={this.editEducationForm}
               />
-
-              {/* <Education saveInputValue={this.saveInputValue} />
-              <FormRenderField
-                infoArray={this.state.educationForm}
-                editEducationForm={this.editEducationForm}
-              /> */}
             </div>
             <div className="professional-form-fill">
               {!this.state.professionalFormEdit && (
@@ -181,6 +191,7 @@ class App extends Component {
                   saveInputValue={this.saveInputValue}
                   isEditing={this.state.professionalFormEdit}
                   infoToEdit={this.state.professionalForm[this.state.professionalEntry]}
+                  deleteValue={this.deleteValue}
                 />
               )}
 
@@ -189,6 +200,7 @@ class App extends Component {
                   saveInputValue={this.saveInputValue}
                   isEditing={this.state.professionalFormEdit}
                   infoToEdit={this.state.professionalForm[this.state.professionalEntry]}
+                  deleteValue={this.deleteValue}
                 />
               )}
 
@@ -196,8 +208,6 @@ class App extends Component {
                 infoArray={this.state.professionalForm}
                 editForm={this.editProfessionalForm}
               />
-
-              {/* <Professional saveInputValue={this.saveInputValue} /> */}
             </div>
           </div>
           <div className="cv-show">
