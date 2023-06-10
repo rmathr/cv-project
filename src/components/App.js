@@ -6,6 +6,8 @@ import Professional from './Professional';
 import RenderField from './RenderField';
 import BasicInfoRender from './BasicInfoRender';
 import FormRenderField from './FormRenderField';
+import RenderEducationCV from './RenderEducationCV';
+import RenderProfessionalCV from './RenderProfessionalCV';
 
 class App extends Component {
   constructor() {
@@ -240,12 +242,14 @@ class App extends Component {
               <div className="cv-education-info">
                 <p className="cv-section-title">Education</p>
                 <hr></hr>
-                <RenderField props={this.state.educationForm} />
+                {/* <RenderField props={this.state.educationForm} /> */}
+                <RenderEducationCV props={this.state.educationForm} />
               </div>
               <div className="cv-pro-info">
                 <p className="cv-section-title">Professional Expercience</p>
                 <hr></hr>
-                <RenderField props={this.state.professionalForm} />
+                {/* <RenderField props={this.state.professionalForm} /> */}
+                <RenderProfessionalCV props={this.state.professionalForm} />
               </div>
             </div>
           </div>

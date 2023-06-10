@@ -360,9 +360,6 @@ hr{
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@ CV CSS @@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
 
-
-
-
 .cv-basic-info{
     width: 100%;
     height: 100px;
@@ -395,6 +392,103 @@ hr{
     min-height: 300px;
     height: fit-content;
 }
+
+.cv-education-info > .entry {
+    display: grid;
+    grid-template-areas: 
+    "cv-degree-school . . . . cv-dates"
+    ". . . . . cv-city-country"
+    ;
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between; */
+    /* column-gap: 5px; */
+}
+
+.cv-degree-school, .cv-dates, .cv-city-country{
+    display: flex;
+    flex-direction: row;
+}
+
+.cv-degree-school{
+    grid-area: cv-degree-school;
+}
+
+.entry > .cv-degree-school> .degree{
+    font-weight: 700;
+}
+
+.entry > .cv-degree-school> .school{
+    font-style: italic;
+    margin-left: 5px;
+}
+
+.cv-dates{
+    grid-area: cv-dates;
+    justify-self: flex-end;
+}
+
+.entry > .cv-dates > .startDate{
+    margin-right: 5px;
+}
+
+.cv-city-country{
+    grid-area: cv-city-country;
+    justify-self: flex-end;
+}
+
+.entry > .cv-city-country > .city{
+    margin-right: 5px;
+}
+
+.entry > .cv-degree-school> .degree::after, .entry > .cv-city-country > .city::after{
+    content: ',';
+}
+
+.entry > .cv-dates > .startDate::after{
+    content: '  -';
+}
+
+/* .cv-education-info > .entry > .degree{
+    grid-area: degree;
+    font-weight: 700;
+}
+
+
+
+.cv-education-info > .entry > .school{
+    grid-area: school;
+    font-style: italic;
+    justify-self: flex-start;
+}
+
+.cv-education-info > .entry > .city{
+    grid-area: city;
+    justify-self: flex-end;
+}
+
+.cv-education-info > .entry > .city::after, .cv-education-info > .entry > .degree::after{
+    content: ','
+}
+
+.cv-education-info > .entry > .country{
+    grid-area: country;
+    justify-self: flex-end;
+}
+
+.cv-education-info > .entry > .startDate{
+    grid-area: startDate;
+    justify-self: flex-end;
+}
+
+.cv-education-info > .entry > .endDate{
+    grid-area: endDate;
+    justify-self: flex-end;
+    border-left: 1px solid black;
+} */
+
+
 
 /* .input-field{
     display: flex;
