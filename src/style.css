@@ -78,15 +78,28 @@ body::-webkit-scrollbar{
 }
 
 .forms-fill{
-    width: 40%;
+    width: 50%;
 }
 
 .cv-show{
-    width: 55%;
+    width: 45%;
     padding-right: 36px;
 }
 
-.basic-form-fill, .education-form-fill, .professional-form-fill {
+.cv-download{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cv-download > p {
+    font-weight: 700;
+    font-style: italic;
+}
+
+.basic-form-fill, .education-form-fill, .professional-form-fill, .save-cv {
     margin-bottom: 24px;
     background-color: var(--white-background);
     padding: 24px 18px;
@@ -173,6 +186,8 @@ textarea{
     padding: 24px 48px;
     background-color: var(--white-background);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    min-height: 700px;
+    height: fit-content;
 }
 
 .forms-fill, .cv-show{
@@ -220,48 +235,35 @@ hr{
 }
 
 .form-show-info > .entry {
-    display: grid;
-    column-gap: 10px;
-    grid-template-areas: 
-    "degree degree"
-    "school school"
-    "city country"
-    "startDate endDate"
-    ;
+    display: flex;
+    flex-direction: column;
 }
 
 .basic-form-show, .form-show-info{
     border-top: 5px solid var(--gray-background);
 }
 
-.form-show-info > .entry > .degree{
-    grid-area: degree;
+
+.entry > .form-city-country > .city::after{
+    content: ',';
+    margin-right: 5px;
 }
 
-.form-show-info > .entry > .school{
-    grid-area: school;
+.entry > .form-dates > p:first-child::after{
+    content: '  -';
 }
 
-.form-show-info > .entry > .city{
-    grid-area: city;
+.entry > .form-dates > p:first-child{
+    margin-right: 5px;
 }
 
-.form-show-info > .entry > .city::after{
-    content: ','
+.entry > .jobTitle{
+    font-weight: 700;
 }
 
-.form-show-info > .entry > .country{
-    grid-area: country;
+.entry > .company{
+    font-style: italic;
 }
-
-.form-show-info > .entry > .startDate{
-    grid-area: startDate;
-}
-
-.form-show-info > .entry > .endDate{
-    grid-area: endDate;
-}
-
 
 .expand-icon{
     width: 16px;
@@ -284,12 +286,12 @@ hr{
     color: #fff;
 }
 
-.save-form > span, .edit-form > span, .delete-form > span{
+.save-form > span, .edit-form > span, .delete-form > span, .download-button > span{
     display: flex;
     align-items: center;
 }
 
-.save-form > span > span, .edit-form > span > span, .delete-form > span > span {
+.save-form > span > span, .edit-form > span > span, .delete-form > span > span, .download-button > span > span {
     margin: 0 4px;
 }
 
@@ -338,10 +340,42 @@ hr{
     padding: 8px 16px;
 } */
 
-.svg-right, .svg-delete, .svg-edit{
+.download-button{
+    padding: 8px 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+    /* border: 1px solid #200E32; */
+    border: none;
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+    /* background-color: #200E32; */
+    color: var(--white-background);
+}
+
+
+.svg-right, .svg-delete, .svg-edit, .svg-download{
     width: 24px;
     height: auto;
 }
+
+.form-header-title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form-header-title > p{
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.form-header-img{
+    width: 24px;
+    height: auto;
+    margin: 0 12px;
+}
+
 
 .form-buttons{
     width: 100%;
@@ -357,6 +391,13 @@ hr{
 .form-show-info > .entry> .school{
     font-style: italic;
 }
+
+.form-city-country, .form-dates{
+    display: flex;
+    flex-direction: row;
+}
+
+
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@ CV CSS @@@@@@@@@@@@@@@@@@@@@@@@@@@@  */
 
@@ -389,8 +430,18 @@ hr{
 }
 
 .cv-education-info, .cv-pro-info{
-    min-height: 300px;
+    min-height: 200px;
     height: fit-content;
+}
+
+.cv-section-title{
+    font-weight: 700;
+    border-bottom: 2px solid black;
+    /* font-size: 0.9rem; */
+}
+
+.cv-education-info > .entry:first-of-type, .cv-pro-info > .entry:first-of-type{
+    margin-top: 12px;
 }
 
 .cv-education-info > .entry {
@@ -409,6 +460,7 @@ hr{
 .cv-degree-school, .cv-dates, .cv-city-country{
     display: flex;
     flex-direction: row;
+    font-size: 0.9rem;
 }
 
 .cv-degree-school{
@@ -429,7 +481,7 @@ hr{
     justify-self: flex-end;
 }
 
-.entry > .cv-dates > .startDate{
+.entry > .cv-dates > .startDate, .entry > .cv-dates > .startDatePro{
     margin-right: 5px;
 }
 
@@ -438,58 +490,59 @@ hr{
     justify-self: flex-end;
 }
 
-.entry > .cv-city-country > .city{
+.entry > .cv-city-country > .city, .entry > .cv-jobTitle-company > .jobTitle{
     margin-right: 5px;
 }
 
-.entry > .cv-degree-school> .degree::after, .entry > .cv-city-country > .city::after{
+.entry > .cv-degree-school> .degree::after, .entry > .cv-city-country > .city::after, .entry > .cv-jobTitle-company > .jobTitle::after{
     content: ',';
 }
 
-.entry > .cv-dates > .startDate::after{
+.entry > .cv-dates > .startDate::after, .entry > .cv-dates > .startDatePro::after{
     content: '  -';
 }
 
-/* .cv-education-info > .entry > .degree{
-    grid-area: degree;
+.mainTasks{
+    white-space: pre-line;
+    font-size: 0.55rem;
+}
+
+.cv-education-info > .entry, .cv-pro-info > .entry {
+    margin-bottom: 18px;
+}
+
+.cv-pro-info > .entry {
+    display: grid;
+    grid-template-areas:
+    "cv-jobTitle-company cv-jobTitle-company cv-jobTitle-company . . cv-dates"
+    "mainTasks mainTasks mainTasks mainTasks mainTasks mainTasks";
+}
+
+.cv-pro-info > .entry > .cv-jobTitle-company{
+    grid-area: cv-jobTitle-company;
+    display: flex;
+    flex-direction: row;
+}
+
+.entry > .cv-jobTitle-company > .jobTitle{
     font-weight: 700;
+    font-size: 0.9rem;
 }
 
-
-
-.cv-education-info > .entry > .school{
-    grid-area: school;
+.entry > .cv-jobTitle-company > .company{
     font-style: italic;
-    justify-self: flex-start;
+    font-size: 0.9rem;
 }
 
-.cv-education-info > .entry > .city{
-    grid-area: city;
-    justify-self: flex-end;
+.cv-pro-info > .entry > .cv-dates{
+    grid-area: cv-dates;
+    font-size: 0.9rem;
 }
 
-.cv-education-info > .entry > .city::after, .cv-education-info > .entry > .degree::after{
-    content: ','
+.cv-pro-info > .entry > .cv-mainTasks{
+    grid-area: mainTasks;
+    margin-top: 5px;
 }
-
-.cv-education-info > .entry > .country{
-    grid-area: country;
-    justify-self: flex-end;
-}
-
-.cv-education-info > .entry > .startDate{
-    grid-area: startDate;
-    justify-self: flex-end;
-}
-
-.cv-education-info > .entry > .endDate{
-    grid-area: endDate;
-    justify-self: flex-end;
-    border-left: 1px solid black;
-} */
-
-
-
 /* .input-field{
     display: flex;
     flex-direction: row;

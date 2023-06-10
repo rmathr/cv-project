@@ -1,13 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 import BasicInfo from './BasicInfo';
 import Education from './Education';
 import Professional from './Professional';
 import RenderField from './RenderField';
-import BasicInfoRender from './BasicInfoRender';
 import FormRenderField from './FormRenderField';
 import RenderEducationCV from './RenderEducationCV';
 import RenderProfessionalCV from './RenderProfessionalCV';
+import FormRenderPro from './FormRenderPro';
+import SaveCV from './SaveCV';
 
 class App extends Component {
   constructor() {
@@ -102,16 +103,11 @@ class App extends Component {
                 educationEntry: null,
               });
             } else {
-              this.setState(
-                {
-                  educationForm: this.state.educationForm.concat(obj),
-                  educationFormEdit: false,
-                  educationEntry: null,
-                },
-                () => {
-                  console.log(this.state.educationForm);
-                }
-              );
+              this.setState({
+                educationForm: this.state.educationForm.concat(obj),
+                educationFormEdit: false,
+                educationEntry: null,
+              });
             }
             break;
           case 'professionalForm':
@@ -146,6 +142,10 @@ class App extends Component {
         </header>
         <div className="main-content">
           <div className="forms-fill">
+            <div className="save-cv">
+              <SaveCV />
+            </div>
+
             <div className="basic-form-fill">
               {!this.state.basicFormEdit && (
                 <BasicInfo
@@ -228,27 +228,27 @@ class App extends Component {
                 />
               )}
 
-              <FormRenderField
+              <FormRenderPro
                 infoArray={this.state.professionalForm}
                 editForm={this.editProfessionalForm}
               />
             </div>
           </div>
           <div className="cv-show">
-            <div className="cv-section">
+            <div className="cv-section" id="cv-report">
               <div className="cv-basic-info">
                 <RenderField props={this.state.basicForm} />
               </div>
               <div className="cv-education-info">
-                <p className="cv-section-title">Education</p>
-                <hr></hr>
-                {/* <RenderField props={this.state.educationForm} /> */}
+                {this.state.educationForm.length > 0 && (
+                  <p className="cv-section-title">Education</p>
+                )}
                 <RenderEducationCV props={this.state.educationForm} />
               </div>
               <div className="cv-pro-info">
-                <p className="cv-section-title">Professional Expercience</p>
-                <hr></hr>
-                {/* <RenderField props={this.state.professionalForm} /> */}
+                {this.state.professionalForm.length > 0 && (
+                  <p className="cv-section-title">Professional Expercience</p>
+                )}
                 <RenderProfessionalCV props={this.state.professionalForm} />
               </div>
             </div>

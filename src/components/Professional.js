@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import FormField from './FormField';
 import expandMore from '../assets/icons/expand-more.png';
 import expandLess from '../assets/icons/expand-less.png';
 import { format } from 'date-fns';
+import work from '../assets/icons/work.png';
 
 class Professional extends Component {
   constructor(props) {
@@ -12,9 +12,7 @@ class Professional extends Component {
       this.state = {
         jobTitle: this.props.infoToEdit.jobTitle,
         company: this.props.infoToEdit.company,
-        // startDatePro: this.props.infoToEdit.startDatePro,
         startDatePro: format(new Date(this.props.infoToEdit.startDatePro), 'yyyy-MM-dd'),
-        // endDatePro: this.props.infoToEdit.endDatePro,
         endDatePro: format(new Date(this.props.infoToEdit.endDatePro), 'yyyy-MM-dd'),
         mainTasks: this.props.infoToEdit.mainTasks,
         form: 'professionalForm',
@@ -45,14 +43,9 @@ class Professional extends Component {
   };
 
   toggleForm = (e) => {
-    this.setState(
-      {
-        isShown: !this.state.isShown,
-      },
-      () => {
-        console.log(this.state.isShown);
-      }
-    );
+    this.setState({
+      isShown: !this.state.isShown,
+    });
   };
 
   handleChange = (e) => {
@@ -68,12 +61,10 @@ class Professional extends Component {
     const formData = {
       jobTitle: this.state.jobTitle,
       company: this.state.company,
-      //   startDatePro: this.state.startDatePro,
       startDatePro: format(
         new Date(this.state.startDatePro.replaceAll('-', '/')),
         "MMM',' yyyy"
       ),
-      //   endDatePro: this.state.endDatePro,
       endDatePro: format(
         new Date(this.state.endDatePro.replaceAll('-', '/')),
         "MMM',' yyyy"
@@ -92,16 +83,16 @@ class Professional extends Component {
       form: 'professionalForm',
       isShown: false,
     });
-
-    console.log(formData);
   };
 
   render() {
     return (
       <div className="filling-form">
         <div className="form-header">
-          <p>Professional Expercience</p>
-          {/* <button onClick={this.toggleForm}>Click</button> */}
+          <div className="form-header-title">
+            <img className="form-header-img" src={work} />
+            <p>Professional Expercience</p>
+          </div>
           <img
             onClick={this.toggleForm}
             src={this.state.isShown ? expandLess : expandMore}

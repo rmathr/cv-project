@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import FormField from './FormField';
 import expandMore from '../assets/icons/expand-more.png';
 import expandLess from '../assets/icons/expand-less.png';
 import { format } from 'date-fns';
+import education from '../assets/icons/education.png';
 
 class Education extends Component {
   constructor(props) {
@@ -14,9 +14,7 @@ class Education extends Component {
         school: this.props.infoToEdit.school,
         city: this.props.infoToEdit.city,
         country: this.props.infoToEdit.country,
-        // startDate: this.props.infoToEdit.startDate,
         startDate: format(new Date(this.props.infoToEdit.startDate), 'yyyy-MM-dd'),
-        // endDate: this.props.infoToEdit.endDate,
         endDate: format(new Date(this.props.infoToEdit.endDate), 'yyyy-MM-dd'),
         form: 'educationForm',
         isShown: true,
@@ -89,16 +87,16 @@ class Education extends Component {
       form: 'educationForm',
       isShown: false,
     });
-
-    console.log(formData);
   };
 
   render() {
     return (
       <div className="filling-form">
         <div className="form-header">
-          <p>Education Experience</p>
-          {/* <button onClick={this.toggleForm}>Click</button> */}
+          <div className="form-header-title">
+            <img className="form-header-img" src={education} />
+            <p>Education Experience</p>
+          </div>
           <img
             onClick={this.toggleForm}
             src={this.state.isShown ? expandLess : expandMore}

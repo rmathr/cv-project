@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import FormField from './FormField';
 import expandMore from '../assets/icons/expand-more.png';
 import expandLess from '../assets/icons/expand-less.png';
+import personal from '../assets/icons/personal.png';
 
 class BasicInfo extends Component {
   constructor(props) {
     super(props);
 
-    // console.log(this.props);
-
     if (this.props.isEditing) {
-      console.log(this.props.infoToEdit);
       this.state = {
         fullName: this.props.infoToEdit.fullName,
         email: this.props.infoToEdit.email,
@@ -32,7 +29,6 @@ class BasicInfo extends Component {
   }
 
   isFormValid = () => {
-    console.log('teste');
     const { fullName, email, phone, address } = this.state;
     return fullName.length && email.length && phone.length && address.length;
   };
@@ -70,16 +66,16 @@ class BasicInfo extends Component {
       form: 'basicForm',
       isShown: false,
     });
-
-    console.log(formData);
   };
 
   render() {
     return (
       <div className="filling-form general-information">
         <div className="form-header">
-          <p>General Information</p>
-          {/* <button onClick={this.toggleForm}>Click</button> */}
+          <div className="form-header-title">
+            <img className="form-header-img" src={personal} />
+            <p>General Information</p>
+          </div>
           <img
             onClick={this.toggleForm}
             src={this.state.isShown ? expandLess : expandMore}
@@ -127,7 +123,7 @@ class BasicInfo extends Component {
               <input
                 type="text"
                 name="address"
-                placeholder="London, ON"
+                placeholder="City, Province"
                 id="address"
                 value={this.state.address}
                 onChange={this.handleChange}

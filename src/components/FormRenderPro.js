@@ -2,12 +2,11 @@ import React, { Component, Fragment } from 'react';
 import uniqid from 'uniqid';
 
 // const FormRenderField = ({ props }) => {
-class FormRenderField extends Component {
+class FormRenderPro extends Component {
   constructor(props) {
     super(props);
   }
   render() {
-    // console.log(this.props.infoArray);
     const propsArray = [...this.props.infoArray];
     const entry = propsArray.map((prop) => {
       return (
@@ -46,10 +45,9 @@ const RenderObj = ({ props }) => {
       {Object.entries(props).map(([key, value]) => {
         if (
           value !== props.form &&
-          key != 'city' &&
-          key != 'country' &&
-          key != 'startDate' &&
-          key != 'endDate'
+          key != 'mainTasks' &&
+          key != 'startDatePro' &&
+          key != 'endDatePro'
         ) {
           return (
             <p key={key} className={key}>
@@ -58,23 +56,10 @@ const RenderObj = ({ props }) => {
           );
         }
       })}
-      <div className="form-city-country">
-        {Object.entries(props).map(([key, value]) => {
-          if (value !== props.form) {
-            if (key == 'city' || key == 'country') {
-              return (
-                <p key={key} className={key}>
-                  {props[key]}
-                </p>
-              );
-            }
-          }
-        })}
-      </div>
       <div className="form-dates">
         {Object.entries(props).map(([key, value]) => {
-          if (value !== props.form) {
-            if (key == 'startDate' || key == 'endDate') {
+          if (value !== props.form && key != 'mainTasks') {
+            if (key == 'startDatePro' || key == 'endDatePro') {
               return (
                 <p key={key} className={key}>
                   {props[key]}
@@ -88,4 +73,4 @@ const RenderObj = ({ props }) => {
   );
 };
 
-export default FormRenderField;
+export default FormRenderPro;

@@ -10,7 +10,7 @@ const RenderProfessionalCV = ({ props }) => {
 const RenderObj = ({ props }) => {
   return (
     <div className="entry">
-      <div className="cv-jobTitle-compaty">
+      <div className="cv-jobTitle-company">
         {Object.entries(props).map(([key, value]) => {
           if (value !== props.form) {
             if (key == 'jobTitle' || key == 'company') {
