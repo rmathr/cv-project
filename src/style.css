@@ -34,7 +34,8 @@ body::-webkit-scrollbar{
     width: 85%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: space-around;
 }
 
 .main-header{
@@ -78,12 +79,12 @@ body::-webkit-scrollbar{
 }
 
 .forms-fill{
-    width: 50%;
+    width: 45%;
 }
 
 .cv-show{
     width: 45%;
-    padding-right: 36px;
+    /* padding-right: 36px; */
 }
 
 .cv-download{
@@ -127,7 +128,6 @@ body::-webkit-scrollbar{
 .form-header > p{
     font-size: 1.4rem;
     font-weight: 700;
-    /* margin-bottom: 12px; */
     padding-left: 12px;
 }
 
@@ -157,6 +157,10 @@ input[type=text], input[type=date], textarea{
     height: 2.5rem;
     padding: 0 12px;
     outline: none;
+}
+
+::-webkit-calendar-picker-indicator{
+    cursor: pointer;
 }
 
 textarea{
@@ -221,7 +225,6 @@ hr{
 }
 
 .basic-form-general-info, .form-show-info{
-    /* border-top: 1px solid black; */
     flex-grow: 1;
     padding-top: 8px;
 }
@@ -310,35 +313,23 @@ hr{
     border-radius: 30px;
     padding: 8px 16px;
     border: none;
-    /* border: 1px solid #222222; */
     transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
     background: #fff;
     color: #222222;
 }
 
 .edit-form:hover {
-    /* border-color: #000000; */
     background: var(--gray-background);
 }
 
 .delete-form{
-    /* display: inline-block;
-    outline: none; */
     padding: 8px 16px;
     font-weight: 600;
-    /* border-radius: 30px;
-    padding: 2px; */
     border: none;
     background-color: transparent;
     cursor: pointer;
-    /* background-color: #222222; */
 }
 
-/* .delete-form > span {
-    background-color: var(--white-background);
-    border-radius: 30px;
-    padding: 8px 16px;
-} */
 
 .download-button{
     padding: 8px 16px;
@@ -346,10 +337,8 @@ hr{
     border: none;
     cursor: pointer;
     border-radius: 30px;
-    /* border: 1px solid #200E32; */
     border: none;
     background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
-    /* background-color: #200E32; */
     color: var(--white-background);
 }
 
@@ -450,11 +439,6 @@ hr{
     "cv-degree-school . . . . cv-dates"
     ". . . . . cv-city-country"
     ;
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between; */
-    /* column-gap: 5px; */
 }
 
 .cv-degree-school, .cv-dates, .cv-city-country{
@@ -543,9 +527,3 @@ hr{
     grid-area: mainTasks;
     margin-top: 5px;
 }
-/* .input-field{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-} */
