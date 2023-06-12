@@ -1,11 +1,10 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import expandMore from '../assets/icons/expand-more.png';
 import expandLess from '../assets/icons/expand-less.png';
 import { format } from 'date-fns';
 import work from '../assets/icons/work.png';
 
 const Professional = (props) => {
-  // class Professional extends Component {
   const [jobTitle, setJobTitle] = useState('');
   const [company, setCompany] = useState('');
   const [startDatePro, setStartDatePro] = useState('');
@@ -23,31 +22,9 @@ const Professional = (props) => {
       setMainTasks(props.infoToEdit.mainTasks);
       setIsShown(true);
     }, []);
-
-    //     this.state = {
-    //     jobTitle: this.props.infoToEdit.jobTitle,
-    //     company: this.props.infoToEdit.company,
-    //     startDatePro: format(new Date(this.props.infoToEdit.startDatePro), 'yyyy-MM-dd'),
-    //     endDatePro: format(new Date(this.props.infoToEdit.endDatePro), 'yyyy-MM-dd'),
-    //     mainTasks: this.props.infoToEdit.mainTasks,
-    //     form: 'professionalForm',
-    //     isShown: true,
-    //   };
   }
-  //     else {
-  //       this.state = {
-  //         jobTitle: '',
-  //         company: '',
-  //         startDatePro: '',
-  //         endDatePro: '',
-  //         mainTasks: '',
-  //         form: 'professionalForm',
-  //         isShown: false,
-  //       };
-  //   }
 
   const isFormValid = () => {
-    // const { jobTitle, company, startDatePro, endDatePro, mainTasks } = this.state;
     return (
       jobTitle.length &&
       company.length &&
@@ -59,10 +36,6 @@ const Professional = (props) => {
 
   const toggleForm = (e) => {
     setIsShown(!isShown);
-
-    // this.setState({
-    //   isShown: !this.state.isShown,
-    // });
   };
 
   const handleChange = (e) => {
@@ -85,30 +58,11 @@ const Professional = (props) => {
         setMainTasks(value);
         break;
     }
-    // const newState = {};
-    // newState[name] = e.target.value;
-    // this.setState(newState);
     e.preventDefault();
   };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-
-    // const formData = {
-    //   jobTitle: this.state.jobTitle,
-    //   company: this.state.company,
-    //   startDatePro: format(
-    //     new Date(this.state.startDatePro.replaceAll('-', '/')),
-    //     "MMM',' yyyy"
-    //   ),
-    //   endDatePro: format(
-    //     new Date(this.state.endDatePro.replaceAll('-', '/')),
-    //     "MMM',' yyyy"
-    //   ),
-    //   mainTasks: this.state.mainTasks,
-    //   form: this.state.form,
-    //   isShown: this.state.isShown,
-    // };
     const formData = {
       jobTitle: jobTitle,
       company: company,
@@ -125,16 +79,6 @@ const Professional = (props) => {
     setEndtDatePro('');
     setMainTasks('');
     setIsShown(false);
-
-    // this.setState({
-    //   jobTitle: '',
-    //   company: '',
-    //   startDatePro: '',
-    //   endDatePro: '',
-    //   mainTasks: '',
-    //   form: 'professionalForm',
-    //   isShown: false,
-    // });
   };
 
   return (

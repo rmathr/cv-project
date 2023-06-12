@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import BasicInfo from './BasicInfo';
 import Education from './Education';
@@ -11,7 +11,6 @@ import FormRenderPro from './FormRenderPro';
 import SaveCV from './SaveCV';
 
 const App = (props) => {
-  // class App extends Component {
   const [basicForm, setBasicForm] = useState('');
   const [educationForm, setEducationForm] = useState([]);
   const [professionalForm, setProfessionalForm] = useState([]);
@@ -21,48 +20,21 @@ const App = (props) => {
   const [professionalFormEdit, setProfessionalFormEdit] = useState(false);
   const [professionalEntry, setProfessionalEntry] = useState(null);
 
-  // this.state = {
-  //   basicForm: '',
-  //   educationForm: [],
-  //   professionalForm: [],
-  //   basicFormEdit: false,
-  //   educationFormEdit: false,
-  //   educationEntry: null,
-  //   professionalFormEdit: false,
-  //   professionalEntry: null,
-  // };
-
   const editForm = (e) => {
     setBasicFormEdit(!basicFormEdit);
-
-    // this.setState({
-    //   basicFormEdit: !this.state.basicFormEdit,
-    // });
   };
 
   const editEducationForm = (id) => {
     setEducationFormEdit(!educationFormEdit);
     setEducationEntry(id);
-
-    // this.setState({
-    //   educationFormEdit: !this.state.educationFormEdit,
-    //   educationEntry: id,
-    // });
   };
 
   const editProfessionalForm = (id) => {
     setProfessionalFormEdit(!professionalFormEdit);
     setProfessionalEntry(id);
-
-    // this.setState({
-    //   professionalFormEdit: !this.state.professionalFormEdit,
-    //   professionalEntry: id,
-    // });
   };
 
   const deleteValue = (obj) => {
-    // for (let key in this.state) {
-    //   if (key === obj.form) {
     switch (obj.form) {
       case 'educationForm':
         if (educationFormEdit) {
@@ -75,15 +47,6 @@ const App = (props) => {
           );
           setEducationFormEdit(false);
           setEducationEntry(null);
-          //     this.setState({
-          //     educationForm: this.state.educationForm.filter((element, index) => {
-          //       if (index != this.state.educationEntry) {
-          //         return element;
-          //       }
-          //     }),
-          //     educationFormEdit: false,
-          //     educationEntry: null,
-          //   });
         }
         break;
       case 'professionalForm':
@@ -97,38 +60,17 @@ const App = (props) => {
           );
           setProfessionalFormEdit(false);
           setProfessionalEntry(null);
-
-          //     this.setState({
-          //     professionalForm: this.state.professionalForm.filter((element, index) => {
-          //       if (index != this.state.professionalEntry) {
-          //         return element;
-          //       }
-          //     }),
-          //     professionalFormEdit: false,
-          //     professionalEntry: null,
-          //   });
         }
         break;
     }
-    //   }
-    // }
   };
 
   const saveInputValue = (obj) => {
-    // for (let key in this.state) {
-    //   if (key === obj.form) {
-
     switch (obj.form) {
       case 'basicForm':
         setBasicForm(obj);
         setBasicFormEdit(false);
-
-        //   this.setState({
-        //       basicForm: obj,
-        //       basicFormEdit: false,
-        //     });
         break;
-
       case 'educationForm':
         if (educationFormEdit) {
           setEducationForm(
@@ -141,30 +83,12 @@ const App = (props) => {
           );
           setEducationFormEdit(false);
           setEducationEntry(null);
-
-          //     this.setState({
-          //     educationForm: this.state.educationForm.map((element, index) => {
-          //       if (index == this.state.educationEntry) {
-          //         return obj;
-          //       }
-          //       return element;
-          //     }),
-          //     educationFormEdit: false,
-          //     educationEntry: null,
-          //   });
         } else {
           setEducationForm(educationForm.concat(obj));
           setEducationFormEdit(false);
           setEducationEntry(null);
-          //     this.setState({
-          //     educationForm: this.state.educationForm.concat(obj),
-          //     educationFormEdit: false,
-          //     educationEntry: null,
-          //   });
         }
-
         break;
-
       case 'professionalForm':
         if (professionalFormEdit) {
           setProfessionalForm(
@@ -177,29 +101,12 @@ const App = (props) => {
           );
           setProfessionalFormEdit(false);
           setProfessionalEntry(null);
-
-          //     this.setState({
-          //     professionalForm: this.state.professionalForm.map((element, index) => {
-          //       if (index == this.state.professionalEntry) {
-          //         return obj;
-          //       }
-          //       return element;
-          //     }),
-          //     professionalFormEdit: false,
-          //     professionalEntry: null,
-          //   });
         } else {
           setProfessionalForm(professionalForm.concat(obj));
           setProfessionalFormEdit(false);
-          //   this.setState({
-          //     professionalForm: this.state.professionalForm.concat(obj),
-          //     professionalFormEdit: false,
-          //   });
         }
         break;
     }
-    //   }
-    // }
   };
 
   return (

@@ -1,10 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import expandMore from '../assets/icons/expand-more.png';
 import expandLess from '../assets/icons/expand-less.png';
 import personal from '../assets/icons/personal.png';
-import { set } from 'date-fns';
 
-// class BasicInfo extends Component {
 const BasicInfo = (props) => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,42 +17,16 @@ const BasicInfo = (props) => {
       setEmail(props.infoToEdit.email);
       setPhone(props.infoToEdit.phone);
       setAddress(props.infoToEdit.address);
-      // setForm('basicForm');
       setIsShown(true);
     }, []);
-
-    //     this.state = {
-    //     fullName: this.props.infoToEdit.fullName,
-    //     email: this.props.infoToEdit.email,
-    //     phone: this.props.infoToEdit.phone,
-    //     address: this.props.infoToEdit.address,
-    //     form: 'basicForm',
-    //     isShown: true,
-    //   };
   }
 
-  //   else {
-  //       this.state = {
-  //         fullName: '',
-  //         email: '',
-  //         phone: '',
-  //         address: '',
-  //         form: 'basicForm',
-  //         isShown: false,
-  //       };
-  //   }
-
   const isFormValid = () => {
-    // const { fullName, email, phone, address } = this.state;
     return fullName.length && email.length && phone.length && address.length;
   };
 
   const toggleForm = (e) => {
     setIsShown(!isShown);
-
-    // this.setState({
-    //   isShown: !this.state.isShown,
-    // });
   };
 
   const handleChange = (e) => {
@@ -74,23 +46,11 @@ const BasicInfo = (props) => {
         setAddress(value);
         break;
     }
-    // const newState = {};
-    // newState[name] = e.target.value;
-    // this.setState(newState);
     e.preventDefault();
   };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-
-    // const formData = {
-    //   fullName: this.state.fullName,
-    //   email: this.state.email,
-    //   phone: this.state.phone,
-    //   address: this.state.address,
-    //   form: this.state.form,
-    //   isShown: this.state.isShown,
-    // };
     const formData = {
       fullName: fullName,
       email: email,
@@ -104,17 +64,7 @@ const BasicInfo = (props) => {
     setEmail('');
     setPhone('');
     setAddress('');
-    // setForm('basicForm');
     setIsShown(false);
-
-    // this.setState({
-    //   fullName: '',
-    //   email: '',
-    //   phone: '',
-    //   address: '',
-    //   form: 'basicForm',
-    //   isShown: false,
-    // });
   };
 
   return (

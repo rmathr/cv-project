@@ -1,11 +1,10 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import expandMore from '../assets/icons/expand-more.png';
 import expandLess from '../assets/icons/expand-less.png';
 import { format } from 'date-fns';
 import education from '../assets/icons/education.png';
 
 const Education = (props) => {
-  // class Education extends Component {
   const [degree, setDegree] = useState('');
   const [school, setSchool] = useState('');
   const [city, setCity] = useState('');
@@ -25,34 +24,9 @@ const Education = (props) => {
       setEndtDate(format(new Date(props.infoToEdit.endDate), 'yyyy-MM-dd'));
       setIsShown(true);
     }, []);
-
-    //   this.state = {
-    //     degree: this.props.infoToEdit.degree,
-    //     school: this.props.infoToEdit.school,
-    //     city: this.props.infoToEdit.city,
-    //     country: this.props.infoToEdit.country,
-    //     startDate: format(new Date(this.props.infoToEdit.startDate), 'yyyy-MM-dd'),
-    //     endDate: format(new Date(this.props.infoToEdit.endDate), 'yyyy-MM-dd'),
-    //     form: 'educationForm',
-    //     isShown: true,
-    //   };
   }
 
-  //     else {
-  //       this.state = {
-  //         degree: '',
-  //         school: '',
-  //         city: '',
-  //         country: '',
-  //         startDate: '',
-  //         endDate: '',
-  //         form: 'educationForm',
-  //         isShown: false,
-  //       };
-  //   }
-
   const isFormValid = () => {
-    // const { degree, school, city, country, startDate, endDate } = this.state;
     return (
       degree.length &&
       school.length &&
@@ -65,10 +39,6 @@ const Education = (props) => {
 
   const toggleForm = (e) => {
     setIsShown(!isShown);
-
-    // this.setState({
-    //   isShown: !this.state.isShown,
-    // });
   };
 
   const handleChange = (e) => {
@@ -94,39 +64,17 @@ const Education = (props) => {
         setEndtDate(value);
         break;
     }
-    // const name = e.target.name;
-    // const newState = {};
-    // newState[name] = e.target.value;
-    // this.setState(newState);
     e.preventDefault();
   };
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-
-    // const formData = {
-    //   degree: this.state.degree,
-    //   school: this.state.school,
-    //   city: this.state.city,
-    //   country: this.state.country,
-    //   //   startDate: this.state.startDate,
-    //   startDate: format(
-    //     new Date(this.state.startDate.replaceAll('-', '/')),
-    //     "MMM',' yyyy"
-    //   ),
-    //   //   endDate: this.state.endDate,
-    //   endDate: format(new Date(this.state.endDate.replaceAll('-', '/')), "MMM',' yyyy"),
-    //   form: this.state.form,
-    //   isShown: this.state.isShown,
-    // };
     const formData = {
       degree: degree,
       school: school,
       city: city,
       country: country,
-      //   startDate: this.state.startDate,
       startDate: format(new Date(startDate.replaceAll('-', '/')), "MMM',' yyyy"),
-      //   endDate: this.state.endDate,
       endDate: format(new Date(endDate.replaceAll('-', '/')), "MMM',' yyyy"),
       form: form,
       isShown: isShown,
@@ -139,17 +87,6 @@ const Education = (props) => {
     setStartDate('');
     setEndtDate('');
     setIsShown(false);
-
-    // this.setState({
-    //   degree: '',
-    //   school: '',
-    //   city: '',
-    //   country: '',
-    //   startDate: '',
-    //   endDate: '',
-    //   form: 'educationForm',
-    //   isShown: false,
-    // });
   };
 
   return (
