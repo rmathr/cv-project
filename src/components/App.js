@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Header from './Header';
 import BasicInfo from './BasicInfo';
 import Education from './Education';
@@ -10,253 +10,311 @@ import RenderProfessionalCV from './RenderProfessionalCV';
 import FormRenderPro from './FormRenderPro';
 import SaveCV from './SaveCV';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      basicForm: '',
-      educationForm: [],
-      professionalForm: [],
-      basicFormEdit: false,
-      educationFormEdit: false,
-      educationEntry: null,
-      professionalFormEdit: false,
-      professionalEntry: null,
-    };
-  }
+const App = (props) => {
+  // class App extends Component {
+  const [basicForm, setBasicForm] = useState('');
+  const [educationForm, setEducationForm] = useState([]);
+  const [professionalForm, setProfessionalForm] = useState([]);
+  const [basicFormEdit, setBasicFormEdit] = useState(false);
+  const [educationFormEdit, setEducationFormEdit] = useState(false);
+  const [educationEntry, setEducationEntry] = useState(null);
+  const [professionalFormEdit, setProfessionalFormEdit] = useState(false);
+  const [professionalEntry, setProfessionalEntry] = useState(null);
 
-  editForm = (e) => {
-    this.setState({
-      basicFormEdit: !this.state.basicFormEdit,
-    });
+  // this.state = {
+  //   basicForm: '',
+  //   educationForm: [],
+  //   professionalForm: [],
+  //   basicFormEdit: false,
+  //   educationFormEdit: false,
+  //   educationEntry: null,
+  //   professionalFormEdit: false,
+  //   professionalEntry: null,
+  // };
+
+  const editForm = (e) => {
+    setBasicFormEdit(!basicFormEdit);
+
+    // this.setState({
+    //   basicFormEdit: !this.state.basicFormEdit,
+    // });
   };
 
-  editEducationForm = (id) => {
-    this.setState({
-      educationFormEdit: !this.state.educationFormEdit,
-      educationEntry: id,
-    });
+  const editEducationForm = (id) => {
+    setEducationFormEdit(!educationFormEdit);
+    setEducationEntry(id);
+
+    // this.setState({
+    //   educationFormEdit: !this.state.educationFormEdit,
+    //   educationEntry: id,
+    // });
   };
 
-  editProfessionalForm = (id) => {
-    this.setState({
-      professionalFormEdit: !this.state.professionalFormEdit,
-      professionalEntry: id,
-    });
+  const editProfessionalForm = (id) => {
+    setProfessionalFormEdit(!professionalFormEdit);
+    setProfessionalEntry(id);
+
+    // this.setState({
+    //   professionalFormEdit: !this.state.professionalFormEdit,
+    //   professionalEntry: id,
+    // });
   };
 
-  deleteValue = (obj) => {
-    for (let key in this.state) {
-      if (key === obj.form) {
-        switch (obj.form) {
-          case 'educationForm':
-            if (this.state.educationFormEdit) {
-              this.setState({
-                educationForm: this.state.educationForm.filter((element, index) => {
-                  if (index != this.state.educationEntry) {
-                    return element;
-                  }
-                }),
-                educationFormEdit: false,
-                educationEntry: null,
-              });
-            }
-            break;
-          case 'professionalForm':
-            if (this.state.professionalFormEdit) {
-              this.setState({
-                professionalForm: this.state.professionalForm.filter((element, index) => {
-                  if (index != this.state.professionalEntry) {
-                    return element;
-                  }
-                }),
-                professionalFormEdit: false,
-                professionalEntry: null,
-              });
-            }
-            break;
+  const deleteValue = (obj) => {
+    // for (let key in this.state) {
+    //   if (key === obj.form) {
+    switch (obj.form) {
+      case 'educationForm':
+        if (educationFormEdit) {
+          setEducationForm(
+            educationForm.filter((element, index) => {
+              if (index != educationEntry) {
+                return element;
+              }
+            })
+          );
+          setEducationFormEdit(false);
+          setEducationEntry(null);
+          //     this.setState({
+          //     educationForm: this.state.educationForm.filter((element, index) => {
+          //       if (index != this.state.educationEntry) {
+          //         return element;
+          //       }
+          //     }),
+          //     educationFormEdit: false,
+          //     educationEntry: null,
+          //   });
         }
-      }
-    }
-  };
+        break;
+      case 'professionalForm':
+        if (professionalFormEdit) {
+          setProfessionalForm(
+            professionalForm.filter((element, index) => {
+              if (index != professionalEntry) {
+                return element;
+              }
+            })
+          );
+          setProfessionalFormEdit(false);
+          setProfessionalEntry(null);
 
-  saveInputValue = (obj) => {
-    for (let key in this.state) {
-      if (key === obj.form) {
-        switch (obj.form) {
-          case 'basicForm':
-            this.setState({
-              basicForm: obj,
-              basicFormEdit: false,
-            });
-            break;
-          case 'educationForm':
-            if (this.state.educationFormEdit) {
-              this.setState({
-                educationForm: this.state.educationForm.map((element, index) => {
-                  if (index == this.state.educationEntry) {
-                    return obj;
-                  }
-                  return element;
-                }),
-                educationFormEdit: false,
-                educationEntry: null,
-              });
-            } else {
-              this.setState({
-                educationForm: this.state.educationForm.concat(obj),
-                educationFormEdit: false,
-                educationEntry: null,
-              });
-            }
-            break;
-          case 'professionalForm':
-            if (this.state.professionalFormEdit) {
-              this.setState({
-                professionalForm: this.state.professionalForm.map((element, index) => {
-                  if (index == this.state.professionalEntry) {
-                    return obj;
-                  }
-                  return element;
-                }),
-                professionalFormEdit: false,
-                professionalEntry: null,
-              });
-            } else {
-              this.setState({
-                professionalForm: this.state.professionalForm.concat(obj),
-                professionalFormEdit: false,
-              });
-            }
-            break;
+          //     this.setState({
+          //     professionalForm: this.state.professionalForm.filter((element, index) => {
+          //       if (index != this.state.professionalEntry) {
+          //         return element;
+          //       }
+          //     }),
+          //     professionalFormEdit: false,
+          //     professionalEntry: null,
+          //   });
         }
-      }
+        break;
     }
+    //   }
+    // }
   };
 
-  render() {
-    return (
-      <div className="main-container">
-        <header className="main-header">
-          <Header />
-        </header>
-        <div className="main-content">
-          <div className="forms-fill">
-            <div className="save-cv">
-              <SaveCV />
-            </div>
+  const saveInputValue = (obj) => {
+    // for (let key in this.state) {
+    //   if (key === obj.form) {
 
-            <div className="basic-form-fill">
-              {!this.state.basicFormEdit && (
-                <BasicInfo
-                  saveInputValue={this.saveInputValue}
-                  isEditing={this.state.basicFormEdit}
-                  infoToEdit={this.state.basicForm}
-                />
-              )}
-              {this.state.basicFormEdit && (
-                <BasicInfo
-                  saveInputValue={this.saveInputValue}
-                  isEditing={this.state.basicFormEdit}
-                  infoToEdit={this.state.basicForm}
-                />
-              )}
-              {this.state.basicForm != '' && (
-                <div className="basic-form-show">
-                  <div className="basic-form-general-info">
-                    <RenderField props={this.state.basicForm} />
-                  </div>
+    switch (obj.form) {
+      case 'basicForm':
+        setBasicForm(obj);
+        setBasicFormEdit(false);
 
-                  <button onClick={this.editForm} className="edit-form">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="48"
-                        viewBox="0 -960 960 960"
-                        width="48"
-                        className="svg-edit"
-                      >
-                        <path d="M480-120v-71l216-216 71 71-216 216h-71ZM120-330v-60h300v60H120Zm690-49-71-71 29-29q8-8 21-8t21 8l29 29q8 8 8 21t-8 21l-29 29ZM120-495v-60h470v60H120Zm0-165v-60h470v60H120Z" />
-                      </svg>
-                      <span></span>
-                      Edit
-                    </span>
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className="education-form-fill">
-              {!this.state.educationFormEdit && (
-                <Education
-                  saveInputValue={this.saveInputValue}
-                  isEditing={this.state.educationFormEdit}
-                  infoToEdit={this.state.educationForm[this.state.educationEntry]}
-                  deleteValue={this.deleteValue}
-                />
-              )}
+        //   this.setState({
+        //       basicForm: obj,
+        //       basicFormEdit: false,
+        //     });
+        break;
 
-              {this.state.educationFormEdit && (
-                <Education
-                  saveInputValue={this.saveInputValue}
-                  isEditing={this.state.educationFormEdit}
-                  infoToEdit={this.state.educationForm[this.state.educationEntry]}
-                  deleteValue={this.deleteValue}
-                />
-              )}
+      case 'educationForm':
+        if (educationFormEdit) {
+          setEducationForm(
+            educationForm.map((element, index) => {
+              if (index == educationEntry) {
+                return obj;
+              }
+              return element;
+            })
+          );
+          setEducationFormEdit(false);
+          setEducationEntry(null);
 
-              <FormRenderField
-                infoArray={this.state.educationForm}
-                editForm={this.editEducationForm}
-              />
-            </div>
-            <div className="professional-form-fill">
-              {!this.state.professionalFormEdit && (
-                <Professional
-                  saveInputValue={this.saveInputValue}
-                  isEditing={this.state.professionalFormEdit}
-                  infoToEdit={this.state.professionalForm[this.state.professionalEntry]}
-                  deleteValue={this.deleteValue}
-                />
-              )}
+          //     this.setState({
+          //     educationForm: this.state.educationForm.map((element, index) => {
+          //       if (index == this.state.educationEntry) {
+          //         return obj;
+          //       }
+          //       return element;
+          //     }),
+          //     educationFormEdit: false,
+          //     educationEntry: null,
+          //   });
+        } else {
+          setEducationForm(educationForm.concat(obj));
+          setEducationFormEdit(false);
+          setEducationEntry(null);
+          //     this.setState({
+          //     educationForm: this.state.educationForm.concat(obj),
+          //     educationFormEdit: false,
+          //     educationEntry: null,
+          //   });
+        }
 
-              {this.state.professionalFormEdit && (
-                <Professional
-                  saveInputValue={this.saveInputValue}
-                  isEditing={this.state.professionalFormEdit}
-                  infoToEdit={this.state.professionalForm[this.state.professionalEntry]}
-                  deleteValue={this.deleteValue}
-                />
-              )}
+        break;
 
-              <FormRenderPro
-                infoArray={this.state.professionalForm}
-                editForm={this.editProfessionalForm}
-              />
-            </div>
+      case 'professionalForm':
+        if (professionalFormEdit) {
+          setProfessionalForm(
+            professionalForm.map((element, index) => {
+              if (index == professionalEntry) {
+                return obj;
+              }
+              return element;
+            })
+          );
+          setProfessionalFormEdit(false);
+          setProfessionalEntry(null);
+
+          //     this.setState({
+          //     professionalForm: this.state.professionalForm.map((element, index) => {
+          //       if (index == this.state.professionalEntry) {
+          //         return obj;
+          //       }
+          //       return element;
+          //     }),
+          //     professionalFormEdit: false,
+          //     professionalEntry: null,
+          //   });
+        } else {
+          setProfessionalForm(professionalForm.concat(obj));
+          setProfessionalFormEdit(false);
+          //   this.setState({
+          //     professionalForm: this.state.professionalForm.concat(obj),
+          //     professionalFormEdit: false,
+          //   });
+        }
+        break;
+    }
+    //   }
+    // }
+  };
+
+  return (
+    <div className="main-container">
+      <header className="main-header">
+        <Header />
+      </header>
+      <div className="main-content">
+        <div className="forms-fill">
+          <div className="save-cv">
+            <SaveCV />
           </div>
-          <div className="cv-show">
-            <div className="cv-section" id="cv-report">
-              <div className="cv-basic-info">
-                <RenderField props={this.state.basicForm} />
+
+          <div className="basic-form-fill">
+            {!basicFormEdit && (
+              <BasicInfo
+                saveInputValue={saveInputValue}
+                isEditing={basicFormEdit}
+                infoToEdit={basicForm}
+              />
+            )}
+            {basicFormEdit && (
+              <BasicInfo
+                saveInputValue={saveInputValue}
+                isEditing={basicFormEdit}
+                infoToEdit={basicForm}
+              />
+            )}
+            {basicForm != '' && (
+              <div className="basic-form-show">
+                <div className="basic-form-general-info">
+                  <RenderField props={basicForm} />
+                </div>
+
+                <button onClick={editForm} className="edit-form">
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="48"
+                      viewBox="0 -960 960 960"
+                      width="48"
+                      className="svg-edit"
+                    >
+                      <path d="M480-120v-71l216-216 71 71-216 216h-71ZM120-330v-60h300v60H120Zm690-49-71-71 29-29q8-8 21-8t21 8l29 29q8 8 8 21t-8 21l-29 29ZM120-495v-60h470v60H120Zm0-165v-60h470v60H120Z" />
+                    </svg>
+                    <span></span>
+                    Edit
+                  </span>
+                </button>
               </div>
-              <div className="cv-education-info">
-                {this.state.educationForm.length > 0 && (
-                  <p className="cv-section-title">Education</p>
-                )}
-                <RenderEducationCV props={this.state.educationForm} />
-              </div>
-              <div className="cv-pro-info">
-                {this.state.professionalForm.length > 0 && (
-                  <p className="cv-section-title">Professional Expercience</p>
-                )}
-                <RenderProfessionalCV props={this.state.professionalForm} />
-              </div>
+            )}
+          </div>
+          <div className="education-form-fill">
+            {!educationFormEdit && (
+              <Education
+                saveInputValue={saveInputValue}
+                isEditing={educationFormEdit}
+                infoToEdit={educationForm[educationEntry]}
+                deleteValue={deleteValue}
+              />
+            )}
+
+            {educationFormEdit && (
+              <Education
+                saveInputValue={saveInputValue}
+                isEditing={educationFormEdit}
+                infoToEdit={educationForm[educationEntry]}
+                deleteValue={deleteValue}
+              />
+            )}
+
+            <FormRenderField infoArray={educationForm} editForm={editEducationForm} />
+          </div>
+          <div className="professional-form-fill">
+            {!professionalFormEdit && (
+              <Professional
+                saveInputValue={saveInputValue}
+                isEditing={professionalFormEdit}
+                infoToEdit={professionalForm[professionalEntry]}
+                deleteValue={deleteValue}
+              />
+            )}
+
+            {professionalFormEdit && (
+              <Professional
+                saveInputValue={saveInputValue}
+                isEditing={professionalFormEdit}
+                infoToEdit={professionalForm[professionalEntry]}
+                deleteValue={deleteValue}
+              />
+            )}
+
+            <FormRenderPro infoArray={professionalForm} editForm={editProfessionalForm} />
+          </div>
+        </div>
+        <div className="cv-show">
+          <div className="cv-section" id="cv-report">
+            <div className="cv-basic-info">
+              <RenderField props={basicForm} />
+            </div>
+            <div className="cv-education-info">
+              {educationForm.length > 0 && <p className="cv-section-title">Education</p>}
+              <RenderEducationCV props={educationForm} />
+            </div>
+            <div className="cv-pro-info">
+              {professionalForm.length > 0 && (
+                <p className="cv-section-title">Professional Expercience</p>
+              )}
+              <RenderProfessionalCV props={professionalForm} />
             </div>
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default App;
